@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 import { Login } from '../models/login.model';
 import { Sucursal } from '../models/sucursal.model';
 @Injectable()
-export class ArticleService {
+export class TransportesService {
 
   public url: string;
 

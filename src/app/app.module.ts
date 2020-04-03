@@ -3,17 +3,22 @@ import { NgModule } from '@angular/core';
 
 // Routing
 import { appRoutingProviders, routing } from './app.Routing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { ColaboradorComponent } from './components/colaborador/colaborador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ColaboradorComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
     routing
   ],
   providers: [appRoutingProviders],

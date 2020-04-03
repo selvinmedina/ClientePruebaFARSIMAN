@@ -2,12 +2,14 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { ColaboradorComponent } from './components/colaborador/colaborador.component';
 
 // Importar los componentes a los cuales les quiero hacer una pagina exclusiva
 
 // Array de rutas
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'colaborador', component: ColaboradorComponent },
 ];
 
 // Exportar el modulo de rutas

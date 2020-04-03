@@ -1,1 +1,17 @@
-<p>login works!</p>
+<form action="" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="usuario">Usuario:</label>
+    <input type="text" name="usuario" [(ngModel)]="login.nombreUsuario" id="usuario">
+  </div>
+  <div>
+    <label for="password">Contraseña:</label>
+    <input type="password" name="password" id="password" [(ngModel)]="login.password">
+  </div>
+  <p *ngIf='cargando'>
+    Cargango...
+  </p>
+  <p *ngIf='loginIncorrecto'>
+    {{mensajeError}}
+  </p>
+  <input type="submit" value="Login">
+</form>
