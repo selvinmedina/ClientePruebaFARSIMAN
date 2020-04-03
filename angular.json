@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "PruebaFARSIMAN": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PruebaFARSIMAN"
+    }
+  },
+  "defaultProject": "PruebaFARSIMAN",
+  "cli": {
+    "analytics": "e44d25f0-0c52-4ef4-ad17-a28d29845ec7"
+  }
 }
