@@ -30,6 +30,7 @@ export class ReporteComponent implements OnInit {
   nombreTransportista: string;
   totalTransportista: number;
   cantidad: number;
+  mostrarValidacion: boolean;
 
   constructor(
     // tslint:disable-next-line: variable-name
@@ -54,7 +55,7 @@ export class ReporteComponent implements OnInit {
   }
 
   generarReporte() {
-
+    this.mostrarValidacion = false;
     if (this.fecha1 && this.fecha2 && this.transportista.id !== '') {
       this._transportesService.obtenerReporte(this.fecha1, this.fecha2, this.transportista).subscribe(
         res => {
@@ -66,6 +67,8 @@ export class ReporteComponent implements OnInit {
         }
       );
 
+    } else {
+      this.mostrarValidacion = true;
     }
   }
 

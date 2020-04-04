@@ -16,3 +16,7 @@ body {
   padding-bottom: 10%;
   padding: auto;
 }
+
+.valicacion {
+  color: rgb(253, 0, 0) !important;
+}

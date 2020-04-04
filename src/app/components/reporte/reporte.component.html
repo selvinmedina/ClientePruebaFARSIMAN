@@ -20,16 +20,22 @@
     </div>
     <br>
     <div>
-      <label for="transportistas">Transportista</label> <br>
-
-      <select [(ngModel)]="transportista.id" *ngIf='transportistas' name="transportistas" id="transportistas">
-        <option value="">-- Seleccione un Transportista --</option>
-        <option *ngFor='let transportista of transportistas' value="{{transportista.id}}">{{transportista.nombre}}
-        </option>
-      </select>
+      <mat-form-field>
+        <mat-label>Escoja un Transportista</mat-label>
+        <mat-select [(value)]='transportista.id'>
+          <mat-option *ngFor="let transportista of transportistas" [value]="transportista.id">
+            {{transportista.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <br><br>
+    <br>
+    <p *ngIf='mostrarValidacion' class="valicacion">
+      Tiene que llenar todos los campos
+      <br>
+    </p>
     <button mat-raised-button color="primary" (click)='generarReporte()'>Generar reporte</button>
+    <br><br>
   </div>
   <div *ngIf='dataSource'>
     <h3>Listado de colaboradores</h3>

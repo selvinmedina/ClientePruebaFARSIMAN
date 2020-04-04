@@ -48,11 +48,10 @@ export class TransportesService {
 
   obtenerReporte(fecha1, fecha2, transportista) {
     const data = {
-      fecha1: fecha1,
-      fecha2: fecha2,
+      fecha1,
+      fecha2,
       transportista: transportista.id
     };
-    console.log(data);
     return this._http.post<string>(`${this.url}/Reporte`, data);
   }
 }

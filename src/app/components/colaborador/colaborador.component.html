@@ -2,31 +2,39 @@
   <h1>Registrar viajes por colaborador</h1>
   <form (ngSubmit)="onSubmit()">
     <div>
-      <label for="colaborador">Colaboradores</label> <br>
-      <select [(ngModel)]="colaborador" *ngIf='colaboradores' name="colaborador" id="colaborador">
-        <option value="">-- Seleccione un colaborador--</option>
-        <option *ngFor='let colaborador of colaboradores' value="{{colaborador.id}}">{{colaborador.descripcion}}
-        </option>
-      </select>
+      <mat-form-field>
+        <mat-label>Escoja un Colaborador</mat-label>
+        <mat-select [(value)]='colaborador'>
+          <mat-option *ngFor="let colaborador of colaboradores" [value]="colaborador.id">
+            {{colaborador.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <br>
     <div>
-      <label for="sucursal">Sucursales</label> <br>
-      <select [(ngModel)]="sucursal" *ngIf='sucursales' name="sucursal" id="sucursal">
-        <option value="">-- Seleccione una Sucursal--</option>
-        <option *ngFor='let sucursal of sucursales' value="{{sucursal.id}}">{{sucursal.descripcion}}</option>
-      </select>
+      <mat-form-field>
+        <mat-label>Escoja una Sucursal</mat-label>
+        <mat-select [(value)]='sucursal'>
+          <mat-option *ngFor="let sucursal of sucursales" [value]="sucursal.id">
+            {{sucursal.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <br>
     <div>
-      <input type="number" [(ngModel)]="distancia" name="distancia" id="distancia" placeholder="Ingrese la distancia">
+      <mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <input matInput type="number" [(ngModel)]="distancia" name="distancia" placeholder="Ingrese la distancia">
+      </mat-form-field>
     </div>
     <br>
     <p *ngIf='exito'>
       Se ha ingresado correctamente
       <br>
     </p>
-    <p *ngIf='mensaje'>
+    <p *ngIf='mensaje' class="valicacion">
       Tiene que llenar todos los datos
     </p>
     <div>
