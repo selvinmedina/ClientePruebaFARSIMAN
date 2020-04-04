@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TransportesService } from '../../services/transportes.services';
 import { Transportista } from 'src/app/models/transportista.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reporte',
@@ -31,10 +32,16 @@ export class ReporteComponent implements OnInit {
   cantidad: number;
 
   constructor(
-    private _transportesService: TransportesService
+    // tslint:disable-next-line: variable-name
+    private _transportesService: TransportesService,
+    // tslint:disable-next-line: variable-name
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('id')) {
+      this._router.navigate(['']);
+    }
     this._transportesService.getTransportista().subscribe(
       val => {
         this.transportistas = val;

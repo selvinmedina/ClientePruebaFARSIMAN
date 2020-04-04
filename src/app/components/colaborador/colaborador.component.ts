@@ -22,7 +22,9 @@ export class ColaboradorComponent implements OnInit {
   public mensaje: boolean;
 
   constructor(
+    // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
+    // tslint:disable-next-line: variable-name
     private _router: Router
   ) { }
 
