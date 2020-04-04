@@ -41,9 +41,12 @@ export class LoginComponent implements OnInit {
         console.log(res);
         if (!res.usu_Id) {
           this.loginIncorrecto = true;
+          localStorage.removeItem('id');
+          this.cargando = false;
           return;
         } else {
           console.log(res);
+          localStorage.setItem('id', res.usu_Id);
           this._router.navigate(['colaborador']);
         }
 
