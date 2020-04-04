@@ -1,4 +1,4 @@
-<div>
+<div class="mat-elevation-z8 centrado">
   <div>
     <div>
       <mat-form-field class="example-full-width">
@@ -8,17 +8,15 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <br>
-    <br>
-    <br>
     <div>
-      <label for="transportistas">Transportista</label> <br>
-
-      <select [(ngModel)]="transportista.id" *ngIf='transportistas' name="transportistas" id="transportistas">
-        <option value="">-- Seleccione un Transportista --</option>
-        <option *ngFor='let transportista of transportistas' value="{{transportista.id}}">{{transportista.nombre}}
-        </option>
-      </select>
+      <mat-form-field>
+        <mat-label>Escoja un Transportista</mat-label>
+        <mat-select [(value)]='transportista.id'>
+          <mat-option *ngFor="let transportista of transportistas" [value]="transportista.id">
+            {{transportista.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
   <div>
@@ -66,6 +64,6 @@
       Se han insertado bien los registros
       <br>
     </p>
-    <input type="button" (click)="enviarData()" value="Aceptar">
+    <button mat-raised-button color="primary" (click)="enviarData()">Aceptar</button>
   </div>
 </div>

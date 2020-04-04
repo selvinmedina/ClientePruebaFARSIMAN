@@ -1,4 +1,4 @@
-<div>
+<div class="centrado">
   <div>
     <div>
       <mat-form-field class="example-full-width">
@@ -29,7 +29,7 @@
       </select>
     </div>
     <br><br>
-    <button (click)='generarReporte()'>Generar reporte</button>
+    <button mat-raised-button color="primary" (click)='generarReporte()'>Generar reporte</button>
   </div>
   <div *ngIf='dataSource'>
     <h3>Listado de colaboradores</h3>

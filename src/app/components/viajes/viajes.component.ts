@@ -35,7 +35,7 @@ export class ViajesComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
     // tslint:disable-next-line: variable-name
-    private _router: Router
+
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(2019, 0, 1);
@@ -43,9 +43,7 @@ export class ViajesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('id')) {
-      this._router.navigate(['']);
-    }
+
     this._transportesService.getColaboradores().subscribe(
       res => {
         this.colaboradores = res;

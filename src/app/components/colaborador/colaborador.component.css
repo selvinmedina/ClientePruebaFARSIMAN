@@ -1,8 +1,9 @@
 .fondocolor {
-  background-color: rgb(15, 113, 204);
+  background-color: rgba(105, 176, 243, 0.767);
   margin-left: 5%;
   margin-right: 5%;
   border-radius: 5px;
   margin-bottom: 5px;
+  margin-top: 5%;
   box-shadow: 10px 10px 10px black;
 }
