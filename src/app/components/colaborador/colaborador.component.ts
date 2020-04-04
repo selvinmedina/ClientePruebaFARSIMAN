@@ -19,6 +19,7 @@ export class ColaboradorComponent implements OnInit {
   public distancia: number;
   public idUsuario: string;
   public exito: boolean;
+  public mensaje: boolean;
 
   constructor(
     private _transportesService: TransportesService,
@@ -44,6 +45,7 @@ export class ColaboradorComponent implements OnInit {
       this._router.navigate(['']);
     }
     this.exito = false;
+    this.mensaje = false;
   }
 
   onSubmit() {
@@ -52,11 +54,15 @@ export class ColaboradorComponent implements OnInit {
       this._transportesService.actualizarColaborador(this.colaborador, this.sucursal, this.distancia)
         .subscribe(res => {
           if (res === 'ok') {
+            this.mensaje = false;
             this.exito = true;
           } else {
             this.exito = false;
           }
         });
+    } else {
+      this.exito = false;
+      this.mensaje = true;
     }
   }
 }

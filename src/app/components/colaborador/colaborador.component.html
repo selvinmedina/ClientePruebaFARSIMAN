@@ -1,4 +1,4 @@
-<div *ngIf="idUsuario">
+<div *ngIf="idUsuario" class="fondocolor">
   <h1>Registrar viajes por colaborador</h1>
   <form (ngSubmit)="onSubmit()">
     <div>
@@ -25,6 +25,9 @@
     <p *ngIf='exito'>
       Se ha ingresado correctamente
       <br>
+    </p>
+    <p *ngIf='mensaje'>
+      Tiene que llenar todos los datos
     </p>
     <div>
       <input type="submit" value="Guardar">

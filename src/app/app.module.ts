@@ -12,6 +12,7 @@ import { ViajesComponent } from './components/viajes/viajes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
+import { ReporteComponent } from './components/reporte/reporte.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatTableModule } from '@angular/material/table';
     AppComponent,
     LoginComponent,
     ColaboradorComponent,
-    ViajesComponent
+    ViajesComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,

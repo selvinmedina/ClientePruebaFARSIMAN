@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { Colaborador } from '../../models/colaborador.model';
 import { TransportesService } from '../../services/transportes.services';
-import { DataSource } from '@angular/cdk/table';
+import { DataSource, } from '@angular/cdk/table';
 import { Transportista } from 'src/app/models/transportista.model';
 
 @Component({
@@ -21,8 +21,10 @@ export class ViajesComponent implements OnInit {
   public displayedColumns: string[] = ['select', 'id', 'descripcion'];
   public dataSource;
   selection = new SelectionModel<Colaborador>(true, []);
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
   constructor(
+    // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
   ) { }
 
@@ -39,6 +41,15 @@ export class ViajesComponent implements OnInit {
       nombre: ''
     };
 
+  }
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngAfterViewInit() {
+    this.table.dataSource = this.dataSource;
+  }
+
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngAfterContentChecked() {
+    this.dataSource = new MatTableDataSource(this.colaboradores);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -61,6 +72,11 @@ export class ViajesComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
+
+  enviarData() {
+    console.log(this.selection.selected);
+    // console.log(this.selection._selection.entries());
   }
 
 }
