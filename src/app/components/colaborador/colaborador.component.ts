@@ -3,6 +3,7 @@ import { TransportesService } from '../../services/transportes.services';
 import { Sucursal } from 'src/app/models/sucursal.model';
 import { Colaborador } from 'src/app/models/colaborador.model';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-colaborador',
@@ -25,7 +26,9 @@ export class ColaboradorComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
     // tslint:disable-next-line: variable-name
-    private _router: Router
+    private _router: Router,
+    // tslint:disable-next-line: variable-name
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -56,6 +59,7 @@ export class ColaboradorComponent implements OnInit {
       this._transportesService.actualizarColaborador(this.colaborador, this.sucursal, this.distancia)
         .subscribe(res => {
           if (res === 'ok') {
+            this.openSnackBar(`¡Se ha actualizado exitosamente!`, 'ok');
             this.mensaje = false;
             this.exito = true;
           } else {
@@ -66,5 +70,11 @@ export class ColaboradorComponent implements OnInit {
       this.exito = false;
       this.mensaje = true;
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 1000,
+    });
   }
 }

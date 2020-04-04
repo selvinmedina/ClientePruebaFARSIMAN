@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class LayoutComponent implements OnInit {
 
   constructor(
+    // tslint:disable-next-line: variable-name
     private _router: Router
   ) { }
 

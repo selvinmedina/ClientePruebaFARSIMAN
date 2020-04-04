@@ -25,15 +25,11 @@
     <br>
     <div>
       <mat-form-field>
-        <mat-label>Favorite food</mat-label>
+        <mat-label>Cantidad de Kilometros</mat-label>
         <input matInput type="number" [(ngModel)]="distancia" name="distancia" placeholder="Ingrese la distancia">
       </mat-form-field>
     </div>
     <br>
-    <p *ngIf='exito'>
-      Se ha ingresado correctamente
-      <br>
-    </p>
     <p *ngIf='mensaje' class="valicacion">
       Tiene que llenar todos los datos
     </p>

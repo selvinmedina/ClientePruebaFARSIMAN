@@ -3,9 +3,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { Colaborador } from '../../models/colaborador.model';
 import { TransportesService } from '../../services/transportes.services';
-import { DataSource, } from '@angular/cdk/table';
 import { Transportista } from 'src/app/models/transportista.model';
 import { Viajes } from 'src/app/models/viajes-colaboradores.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,7 +35,9 @@ export class ViajesComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
     // tslint:disable-next-line: variable-name
-
+    private _snackBar: MatSnackBar,
+    // tslint:disable-next-line: variable-name
+    private _router: Router
   ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(2019, 0, 1);
@@ -112,6 +114,11 @@ export class ViajesComponent implements OnInit {
       this._transportesService.guardarColaboradores(this.viajes)
         .subscribe(res => {
           if (res) {
+            const cantidad = this.viajes.colaboradores.length;
+            this.openSnackBar(
+              `¡Se ha ${cantidad > 1 ? 'n' : ''} ingresado exitosamente
+              ${this.viajes.colaboradores.length} registro${(cantidad > 1) ? 's' : ''}!`, 'Ver'
+            );
             this.correcto = true;
           } else {
             this.correcto = false;
@@ -121,6 +128,14 @@ export class ViajesComponent implements OnInit {
       this.mostrarAlerta = true;
     }
     // console.log(this.selection._selection.entries());
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    }).onAction().subscribe(() => {
+      this._router.navigate(['reporte']);
+    });
   }
 
 }
