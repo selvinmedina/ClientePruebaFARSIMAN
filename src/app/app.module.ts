@@ -9,6 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ColaboradorComponent } from './components/colaborador/colaborador.component';
 import { ViajesComponent } from './components/viajes/viajes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -19,9 +23,12 @@ import { ViajesComponent } from './components/viajes/viajes.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    MatTableModule,
     FormsModule,
-    routing
+    HttpClientModule,
+    MatCheckboxModule,
+    routing,
+    BrowserAnimationsModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

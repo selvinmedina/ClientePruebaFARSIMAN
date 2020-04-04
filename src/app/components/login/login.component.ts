@@ -21,9 +21,12 @@ export class LoginComponent implements OnInit {
     private _transportesService: TransportesService,
     private _router: Router
   ) {
+
     this.login = {
       nombreUsuario: 'selvinmedina',
-      password: '123456'
+      password: '123456',
+      usu_Id: '',
+      usu_NombreUsuario: ''
     };
     this.cargando = false;
     this.mensajeError = 'El Usuario o la Contraseña son incorrectos';
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(e) {
+  onSubmit() {
     this.cargando = true;
     this._transportesService.login(this.login)
       .subscribe(res => {

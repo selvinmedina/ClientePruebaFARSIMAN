@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Login } from '../models/login.model';
 import { Sucursal } from '../models/sucursal.model';
 import { Colaborador } from '../models/colaborador.model';
+import { Transportista } from '../models/transportista.model';
 @Injectable()
 export class TransportesService {
 
@@ -28,6 +29,10 @@ export class TransportesService {
 
   getColaboradores() {
     return this._http.get<Array<Colaborador>>(`${this.url}/Colaboradores`);
+  }
+
+  getTransportista() {
+    return this._http.get<Array<Transportista>>(`${this.url}/Transportistas`);
   }
 
   actualizarColaborador(idColaborador, idSucursal, cantidadKilometros) {

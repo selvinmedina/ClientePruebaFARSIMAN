@@ -41,7 +41,7 @@ export class ColaboradorComponent implements OnInit {
 
     this.idUsuario = localStorage.getItem('id');
     if (!localStorage.getItem('id')) {
-      this._router.navigate(['/']);
+      this._router.navigate(['']);
     }
     this.exito = false;
   }
