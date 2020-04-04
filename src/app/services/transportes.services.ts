@@ -6,6 +6,7 @@ import { Login } from '../models/login.model';
 import { Sucursal } from '../models/sucursal.model';
 import { Colaborador } from '../models/colaborador.model';
 import { Transportista } from '../models/transportista.model';
+import { Viajes } from '../models/viajes-colaboradores.model';
 @Injectable()
 export class TransportesService {
 
@@ -39,5 +40,19 @@ export class TransportesService {
     return this._http.put<string>(`${this.url}/Viajes`, {
       idColaborador, idSucursal, cantidadKilometros
     });
+  }
+
+  guardarColaboradores(viajes: Viajes) {
+    return this._http.post(`${this.url}/Viajes`, viajes);
+  }
+
+  obtenerReporte(fecha1, fecha2, transportista) {
+    const data = {
+      fecha1: fecha1,
+      fecha2: fecha2,
+      transportista: transportista.id
+    };
+    console.log(data);
+    return this._http.post<string>(`${this.url}/Reporte`, data);
   }
 }

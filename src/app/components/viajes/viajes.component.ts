@@ -5,6 +5,7 @@ import { Colaborador } from '../../models/colaborador.model';
 import { TransportesService } from '../../services/transportes.services';
 import { DataSource, } from '@angular/cdk/table';
 import { Transportista } from 'src/app/models/transportista.model';
+import { Viajes } from 'src/app/models/viajes-colaboradores.model';
 
 @Component({
   selector: 'app-viajes',
@@ -22,11 +23,21 @@ export class ViajesComponent implements OnInit {
   public dataSource;
   selection = new SelectionModel<Colaborador>(true, []);
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
+  minDate: Date;
+  maxDate: Date;
+  private viajes: Viajes;
+  fecha: string;
+  mostrarAlerta: boolean;
+  correcto: boolean;
 
   constructor(
     // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
-  ) { }
+  ) {
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(2019, 0, 1);
+    this.maxDate = new Date(currentYear + 1, 11, 31);
+  }
 
   ngOnInit(): void {
     this._transportesService.getColaboradores().subscribe(
@@ -40,6 +51,12 @@ export class ViajesComponent implements OnInit {
       id: '',
       nombre: ''
     };
+
+    this._transportesService.getTransportista().subscribe(
+      val => {
+        this.transportistas = val;
+      }
+    );
 
   }
   // tslint:disable-next-line: use-lifecycle-interface
@@ -75,7 +92,30 @@ export class ViajesComponent implements OnInit {
   }
 
   enviarData() {
-    console.log(this.selection.selected);
+    this.mostrarAlerta = false;
+    this.viajes = {
+      colaboradores: this.selection.selected,
+      fecha: this.fecha,
+      transportista: this.transportista.id,
+      usuario: +localStorage.getItem('id')
+    };
+
+    // Validar
+    if (this.viajes.colaboradores.length > 0 &&
+      this.viajes.fecha &&
+      this.viajes.transportista &&
+      this.viajes.usuario) {
+      this._transportesService.guardarColaboradores(this.viajes)
+        .subscribe(res => {
+          if (res) {
+            this.correcto = true;
+          } else {
+            this.correcto = false;
+          }
+        });
+    } else {
+      this.mostrarAlerta = true;
+    }
     // console.log(this.selection._selection.entries());
   }
 

@@ -1,22 +1,21 @@
 <div>
   <div>
     <div>
-      <label for="fecha">Fecha Inicial</label> <br>
-      <input type="date" name="fechaInicio" id="fechaInicio">
+      <mat-form-field class="example-full-width">
+        <mat-label>Fecha</mat-label>
+        <input [(ngModel)]='fecha' matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
     <br>
-    <br>
-    <div>
-      <label for="fecha">Fecha Final</label> <br>
-      <input type="date" name="fechaFinal" id="fechaFinal">
-    </div>
     <br>
     <br>
     <div>
       <label for="transportistas">Transportista</label> <br>
 
-      <select [(ngModel)]="transportista" *ngIf='transportistas' name="transportistas" id="transportistas">
-        <option value="">-- Seleccione una Sucursal--</option>
+      <select [(ngModel)]="transportista.id" *ngIf='transportistas' name="transportistas" id="transportistas">
+        <option value="">-- Seleccione un Transportista --</option>
         <option *ngFor='let transportista of transportistas' value="{{transportista.id}}">{{transportista.nombre}}
         </option>
       </select>
@@ -59,6 +58,14 @@
   </div>
   <br>
   <div>
+    <p *ngIf='mostrarAlerta'>
+      Asegurese de llenar todos los campos, y seleccionar al menos algun colaborador
+      <br>
+    </p>
+    <p *ngIf='correcto'>
+      Se han insertado bien los registros
+      <br>
+    </p>
     <input type="button" (click)="enviarData()" value="Aceptar">
   </div>
 </div>
