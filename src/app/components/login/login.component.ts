@@ -6,7 +6,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css',
+    '../../../assets/css/main.css',
+    '../../../assets/css/util.css'
+  ],
   providers: [TransportesService]
 })
 export class LoginComponent implements OnInit {
@@ -18,13 +21,15 @@ export class LoginComponent implements OnInit {
   public loginIncorrecto: boolean;
 
   constructor(
+    // tslint:disable-next-line: variable-name
     private _transportesService: TransportesService,
+    // tslint:disable-next-line: variable-name
     private _router: Router
   ) {
 
     this.login = {
-      nombreUsuario: 'selvinmedina',
-      password: '123456',
+      nombreUsuario: '',
+      password: '',
       usu_Id: '',
       usu_NombreUsuario: ''
     };
@@ -56,6 +61,15 @@ export class LoginComponent implements OnInit {
         this.cargando = false;
       });
 
+  }
+
+  onBlur(val) {
+    // Agregar o eliminar una clase
+    if (val.value.trim() !== '') {
+      val.classList.add('has-val');
+    } else {
+      val.classList.remove('has-val');
+    }
   }
 
 }
